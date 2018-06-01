@@ -2,86 +2,94 @@ package application;
 
 import models.Report;
 import services.DomHTMLParser;
-import services.ReportDomainService;
-import services.ReportFactory;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
+import java.util.Properties;
 import java.util.logging.FileHandler;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static java.nio.file.Paths.get;
+import static java.time.LocalDateTime.now;
+import static java.time.format.DateTimeFormatter.ofPattern;
+
 public class MergeReports {
-    private static final String REPORT_NAME_TO_FIND = "index.html";
-    private static final String FOLDER_TO_LOOKUP = "src\\Reports\\ReportsLookUp";
-    private static final String TEMPLATE_REPORT = "src\\Reports\\Template\\index.html";
-    private static final String OUTPUT_REPORT_FILE = "src\\Reports\\Output\\Report_";
-    private static final String OUTPUT_LOG_FILE = "src\\Reports\\Output\\merge.log";
+    private static final Logger LOGGER = Logger.getLogger(MergeReports.class.getName());
 
     public static void main(String[] args) throws IOException {
-        //1-Find reports in directory (*.index.html)
-        //2-build model in memory from Html
-        //3-Process all reports
-        //4-build final report using Template.html
-
-        String currentDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy_MM_dd_HHmmss"));
-        ReportFactory reportFactory = new ReportFactory();
-
-        List<Report> reportsInMemory = findFiles(REPORT_NAME_TO_FIND, Paths.get(FOLDER_TO_LOOKUP)).map(DomHTMLParser::domToReport).collect(Collectors.toList());
-
-        String reportName = OUTPUT_REPORT_FILE + currentDate + ".html";
-
-        Path inputPath = Paths.get(TEMPLATE_REPORT);
-        File outputFile = new File(reportName);
-        try {
-            outputFile.createNewFile();
-
-            Path outputpath = Paths.get(reportName);
-
-            Report finalReport = (new ReportDomainService()).merge(reportsInMemory);
-            reportFactory.buildReportFile(finalReport, inputPath, outputpath);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        Properties properties = new Properties();
+        try (InputStream ins = Files.newInputStream(get("etc", "merge-reports.properties"))) {
+            properties.load(ins);
         }
-        logReportsProcessed(reportsInMemory.size());
+        initLogger(properties.getProperty("reports.log"));
+
+        Path toLook = get(properties.getProperty("reports.base.dir"));
+        List<Report> reportsInMemory = buildReports(toLook);
+        LOGGER.log(Level.INFO, " Found " + reportsInMemory.size() + " reports");
+        if (!reportsInMemory.isEmpty()) {
+            Path mergeReportPath = outputFile(properties);
+            buildReportFile(merge(reportsInMemory), get(properties.getProperty("reports.template")), mergeReportPath);
+            LOGGER.info("Total number of " + reportsInMemory.size() + " reports merged into " + mergeReportPath.toString());
+        } else {
+            LOGGER.log(Level.WARNING, "Found no reports in " + toLook + " to merge");
+        }
+    }
+
+    private static List<Report> buildReports(Path toLook) throws IOException {
+        if (!Files.isDirectory(toLook)) {
+            LOGGER.log(Level.SEVERE, toLook + " does not exists or is no directory");
+            return Collections.emptyList();
+        }
+        return findFiles("index.html", toLook)
+                .map(DomHTMLParser::domToReport)
+                .collect(Collectors.toList());
+    }
+
+    private static Path outputFile(Properties properties) {
+        return get(properties.getProperty("reports.output.dir"), "report_" + now().format(ofPattern("yyyy_MM_dd_HHmmss")) + ".html");
+    }
+
+    private static void initLogger(String outputLog) throws IOException {
+        FileHandler handler = new FileHandler(outputLog);
+        handler.setFormatter(new SimpleFormatter());
+        LOGGER.addHandler(handler);
     }
 
     private static Stream<Path> findFiles(String fileNameToMatch, Path baseDir) throws IOException {
+        LOGGER.info("Looking for reports in " + baseDir + " for file " + fileNameToMatch);
         return Files.find(baseDir, 5, (path, attributes) -> attributes.isRegularFile() && path.endsWith(fileNameToMatch));
     }
 
-    public static void logReportsProcessed(int reportsCount) {
-        Logger logger = Logger.getLogger("MergeLog");
-        FileHandler fh;
+    private static void buildReportFile(Report report, Path templatePath, Path reportToGeneratePath) throws IOException {
+        String content = new String(Files.readAllBytes(templatePath));
 
-        try {
+        content = content.replaceAll("_Test_Count_", String.valueOf(report.getTotalTestCount()));
+        content = content.replaceAll("_Failed_Test_", String.valueOf(report.getFailedTestCount()));
+        content = content.replaceAll("_Passed_Test_", String.valueOf(report.getPassedTestCount()));
+        content = content.replaceAll("_Skipped_Test_", String.valueOf(report.getSkippedTestCount()));
+        content = content.replaceAll("_Success_Rate_", String.valueOf(report.succesRate()));
+        content = content.replaceAll("_Total_Time_", report.getTimeString());
+        content = content.replaceAll("_Current_Date_", LocalDateTime.now().format(DateTimeFormatter.ofPattern("MMM dd, yyyy hh:mm a")));
+        content = content.replaceAll("_Specifications_", report.getSpecifications());
 
-            // This block configure the logger with handler and formatter
-            fh = new FileHandler(OUTPUT_LOG_FILE, true);
-            logger.addHandler(fh);
-            SimpleFormatter formatter = new SimpleFormatter();
-            fh.setFormatter(formatter);
+        Files.createDirectories(reportToGeneratePath.getParent());
+        Files.write(reportToGeneratePath, content.getBytes());
+    }
 
-            String currentDateString = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss")
-                    .format(Calendar.getInstance().getTime());
-            // the following statement is used to log any messages
-            logger.info("Run at: " + currentDateString + " - " + reportsCount + " Reports Processed");
-
-        } catch (SecurityException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private static Report merge(List<Report> reports) {
+        Report finalReport = new Report();
+        reports.stream().forEach(finalReport::merge);
+        return finalReport;
     }
 }

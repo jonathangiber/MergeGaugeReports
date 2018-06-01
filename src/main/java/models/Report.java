@@ -8,11 +8,11 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public class Report {
-    private int failedTestCount;
-    private int passedTestCount;
-    private int skippedTestCount;
-    private int totalTimeSeconds;
-    private String specifications;
+    private int failedTestCount = 0;
+    private int passedTestCount = 0;
+    private int skippedTestCount = 0;
+    private int totalTimeSeconds = 0;
+    private String specifications = "";
 
     public String getSpecifications() {
         return specifications;
