@@ -7,7 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b202cc2-9601-4b8e-9a78-a4e5730f94b0" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/DomHTMLParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/DomHTMLParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Report.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -20,20 +21,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MergeReports.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/application/MergeReports.java">
+      <file leaf-file-name="Report.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/models/Report.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="54" column="37" lean-forward="true" selection-start-line="54" selection-start-column="37" selection-end-line="54" selection-end-column="37" />
+            <state relative-caret-position="299">
+              <caret line="72" column="10" selection-start-line="72" selection-start-column="10" selection-end-line="72" selection-end-column="10" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DomHTMLParser.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MergeReports.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/application/MergeReports.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="413">
+              <caret line="91" column="48" selection-start-line="91" selection-start-column="48" selection-end-line="91" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DomHTMLParser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/services/DomHTMLParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+            <state relative-caret-position="243">
+              <caret line="22" column="9" lean-forward="true" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -69,10 +79,10 @@
         <option value="$PROJECT_DIR$/src/main/java/services/ReportDomainService.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/etc/merge-reports.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/models/Report.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/java/application/MergeReports.java" />
         <option value="$PROJECT_DIR$/src/main/java/services/DomHTMLParser.java" />
+        <option value="$PROJECT_DIR$/src/main/java/models/Report.java" />
       </list>
     </option>
   </component>
@@ -228,7 +238,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.FileService">
+  <component name="RunManager" selected="Application.Report">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
     </configuration>
@@ -250,6 +260,17 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration name="Report" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="models.Report" />
+      <module name="Report" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="models.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -308,9 +329,11 @@
     <list>
       <item itemvalue="Application.MergeReports" />
       <item itemvalue="Application.FileService" />
+      <item itemvalue="Application.Report" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Report" />
         <item itemvalue="Application.FileService" />
         <item itemvalue="Application.MergeReports" />
       </list>
@@ -335,19 +358,19 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.49270833" weight="0.32837406" />
+      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.4921875" weight="0.32837406" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" />
       <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50208336" side_tool="true" visible="true" weight="0.32943678" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.51458335" side_tool="true" visible="true" weight="0.23379384" />
       <window_info anchor="right" id="Maven Projects" order="3" weight="0.4184435" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48645833" weight="0.23379384" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.48541668" visible="true" weight="0.23379384" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" />
       <window_info id="Capture Tool" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25520834" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49791667" visible="true" weight="0.32943678" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25520834" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49791667" weight="0.32943678" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -618,27 +641,34 @@
     <entry file="file://$PROJECT_DIR$/reports/merged/report_2018_06_01_082323.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/models/Report.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/services/DomHTMLParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+        <state relative-caret-position="243">
+          <caret line="22" column="9" lean-forward="true" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/application/MergeReports.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="54" column="37" lean-forward="true" selection-start-line="54" selection-start-column="37" selection-end-line="54" selection-end-column="37" />
+        <state relative-caret-position="413">
+          <caret line="91" column="48" selection-start-line="91" selection-start-column="48" selection-end-line="91" selection-end-column="48" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/services/DomHTMLParser.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/util/Date.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="232">
+          <caret line="176" column="11" selection-start-line="176" selection-start-column="11" selection-end-line="176" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/models/Report.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="72" column="10" selection-start-line="72" selection-start-column="10" selection-end-line="72" selection-end-column="10" />
         </state>
       </provider>
     </entry>

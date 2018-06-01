@@ -1,11 +1,19 @@
 package models;
 
 import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
+
+import static java.time.LocalDateTime.ofEpochSecond;
+import static java.time.format.DateTimeFormatter.ofPattern;
 
 public class Report {
     private int failedTestCount = 0;
@@ -63,11 +71,8 @@ public class Report {
     }
 
     public String getTimeString() {
-        TimeZone tz = TimeZone.getTimeZone("UTC");
-        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
-        df.setTimeZone(tz);
-        String time = df.format(new Date(totalTimeSeconds * 1000L));
-        return time;
+        LocalDateTime utc = ofEpochSecond(totalTimeSeconds, 0, ZoneOffset.UTC);
+        return utc.format(ofPattern("HH:mm:ss"));
     }
 
     public void merge(Report report) {
