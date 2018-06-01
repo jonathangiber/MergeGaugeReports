@@ -7,16 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b202cc2-9601-4b8e-9a78-a4e5730f94b0" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/etc/template.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/MergeReports.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/MergeReports.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Report.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/services/DomHTMLParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/DomHTMLParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/ReportDomainService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/ReportFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Template/index.html" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -29,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Report.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/models/Report.java">
+      <file leaf-file-name="MergeReports.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/application/MergeReports.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+            <state relative-caret-position="544">
+              <caret line="54" column="37" lean-forward="true" selection-start-line="54" selection-start-column="37" selection-end-line="54" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -41,8 +32,8 @@
       <file leaf-file-name="DomHTMLParser.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/services/DomHTMLParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+            <state relative-caret-position="141">
+              <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -141,12 +132,6 @@
               <item name="MergeGaugeReports" type="b2602c69:ProjectViewProjectNode" />
               <item name="MergeGaugeReports" type="462c0819:PsiDirectoryNode" />
               <item name="reports" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MergeGaugeReports" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MergeGaugeReports" type="462c0819:PsiDirectoryNode" />
-              <item name="reports" type="462c0819:PsiDirectoryNode" />
-              <item name="tomerge" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MergeGaugeReports" type="b2602c69:ProjectViewProjectNode" />
@@ -618,13 +603,6 @@
     <entry file="file://$PROJECT_DIR$/reports/tomerge/html-report01/js/main.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/application/MergeReports.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="59" column="73" selection-start-line="59" selection-start-column="73" selection-end-line="59" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/reports/merged/js/main.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -634,10 +612,10 @@
     <entry file="file://$PROJECT_DIR$/reports/merged/specs/example.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/reports/merged/report_2018_06_01_082323.html">
+    <entry file="file://$PROJECT_DIR$/reports/tomerge/html-report/js/main.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/reports/tomerge/html-report/js/main.js">
+    <entry file="file://$PROJECT_DIR$/reports/merged/report_2018_06_01_082323.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/models/Report.java">
@@ -647,10 +625,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/application/MergeReports.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="54" column="37" lean-forward="true" selection-start-line="54" selection-start-column="37" selection-end-line="54" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/services/DomHTMLParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+        <state relative-caret-position="141">
+          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

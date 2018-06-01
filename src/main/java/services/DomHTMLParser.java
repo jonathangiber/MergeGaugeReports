@@ -11,10 +11,16 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 public class DomHTMLParser {
-    public static Report domToReport(Path input) throws IOException {
+    public static Report domToReport(Path input) {
         Report report = new Report();
 
-        Document doc = Jsoup.parse(input.toFile(), "UTF-8");
+        Document doc;
+        try {
+            doc = Jsoup.parse(input.toFile(), "UTF-8");
+        } catch (IOException e) {
+            e.printStackTrace();
+            return report;
+        }
 
         Elements failed = doc.getElementsByClass("fail spec-filter");
         String failedValue = failed.get(0).child(0).html();
