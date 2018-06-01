@@ -1,11 +1,10 @@
-package Services;
+package services;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FileService {
-
   public List<File> indexFiles = new ArrayList<File>();
 
   public void findFiles(String name, File file) {
