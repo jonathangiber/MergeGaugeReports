@@ -2,23 +2,24 @@ package application;
 
 import models.Report;
 import services.DomHTMLParser;
-import services.FileService;
 import services.ReportDomainService;
 import services.ReportFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MergeReports {
     private static final String REPORT_NAME_TO_FIND = "index.html";
@@ -27,25 +28,16 @@ public class MergeReports {
     private static final String OUTPUT_REPORT_FILE = "src\\Reports\\Output\\Report_";
     private static final String OUTPUT_LOG_FILE = "src\\Reports\\Output\\merge.log";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         //1-Find reports in directory (*.index.html)
         //2-build model in memory from Html
         //3-Process all reports
         //4-build final report using Template.html
 
         String currentDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy_MM_dd_HHmmss"));
-        FileService fileService = new FileService();
         ReportFactory reportFactory = new ReportFactory();
-        DomHTMLParser htmlParser = new DomHTMLParser();
-        List<Report> reportsInMemory = new ArrayList<models.Report>();
 
-        File reportsLookUpPath = new File(FOLDER_TO_LOOKUP);
-        fileService.findFiles(REPORT_NAME_TO_FIND, reportsLookUpPath);
-
-        for (File reportFile : fileService.indexFiles) {
-            models.Report report = htmlParser.domToReport(reportFile);
-            reportsInMemory.add(report);
-        }
+        List<Report> reportsInMemory = findFiles(REPORT_NAME_TO_FIND, Paths.get(FOLDER_TO_LOOKUP)).map(DomHTMLParser::domToReport).collect(Collectors.toList());
 
         String reportName = OUTPUT_REPORT_FILE + currentDate + ".html";
 
@@ -63,6 +55,10 @@ public class MergeReports {
             e.printStackTrace();
         }
         logReportsProcessed(reportsInMemory.size());
+    }
+
+    private static Stream<Path> findFiles(String fileNameToMatch, Path baseDir) throws IOException {
+        return Files.find(baseDir, 5, (path, attributes) -> attributes.isRegularFile() && path.endsWith(fileNameToMatch));
     }
 
     public static void logReportsProcessed(int reportsCount) {

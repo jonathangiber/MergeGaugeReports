@@ -18,6 +18,10 @@ public class Report {
         return specifications;
     }
 
+    public void setSpecifications(String specifications) {
+        this.specifications = specifications;
+    }
+
     public int getFailedTestCount() {
         return failedTestCount;
     }

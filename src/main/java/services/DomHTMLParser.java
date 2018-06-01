@@ -1,23 +1,22 @@
 package services;
 
-import java.io.File;
-import java.io.IOException;
-
+import models.Report;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 
-import models.Report;
+import java.io.IOException;
+import java.nio.file.Path;
 
 public class DomHTMLParser {
-    public Report domToReport(File input) {
+    public static Report domToReport(Path input) {
         try {
 
             Report report = new Report();
 
-            Document doc = Jsoup.parse(input, "UTF-8");
+            Document doc = Jsoup.parse(input.toFile(), "UTF-8");
 
             Elements failed = doc.getElementsByClass("fail spec-filter");
             String failedValue = failed.get(0).child(0).html();
@@ -54,7 +53,7 @@ public class DomHTMLParser {
             Elements specifications = doc.getElementById("scenarios").getElementsByTag("li");
 
             if (specifications.size() > 0) {
-                report.specifications = specifications.outerHtml();
+                report.setSpecifications(specifications.outerHtml());
             }
 			/*
 			for (Node spec :specifications.child(3).childNodes()) 
