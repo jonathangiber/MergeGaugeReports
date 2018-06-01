@@ -2,13 +2,6 @@
 
 This repository is responsible for merging all gauge reports.
 
+properties can be set in `etc/merge-reports.properties`
 
-
-1 - src/Reports/ReportsLookUp -> must have all reports to be merge (all index.html, (searched recursively inside all subdirectories)).
-2 - src/Reports/Output -> Final Report generated automatically (using Reports/Template/index.html) also the process log.
-
-
-## TODO
-  - Pass link to every node(Results and specification).
-  - Filter if both specification appears in more than one report.
-
+Its a maven project that is also executable via `mvn clean compile exec:java`
